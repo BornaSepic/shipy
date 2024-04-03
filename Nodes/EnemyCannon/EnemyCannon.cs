@@ -1,27 +1,23 @@
 using Godot;
 using System;
 
-public partial class EnemyCannon : Node2D
+public partial class EnemyCannon : Cannon
 {
-  [Export]
-  RayCast2D rayCast;
+  RayCast2D direction;
 
-  [Export]
   Area2D detectionArea;
 
-  [Export]
   Timer shootTimer;
 
-  [Export]
-  AnimatedSprite2D Effects;
   Player player;
   
-
   public override void _Ready()
   {
-    Effects.Visible = false;
-    Effects.AnimationFinished += OnAnimationFinished;
+    base._Ready();
     player = GetNode<Player>("/root/World/Player");
+    shootTimer = GetNode<Timer>("ShootTimer");
+    detectionArea = GetNode<Area2D>("DetectionArea");
+    direction = GetNode<RayCast2D>("Direction");
   }
 
   public override void _Process(double delta)
@@ -30,25 +26,8 @@ public partial class EnemyCannon : Node2D
 
     if(shootTimer.IsStopped() && detectionArea.GetOverlappingBodies().Count > 0)
     {
-      Shoot();
+      Shoot((uint) CollisionLayers.Player);
+      shootTimer.Start();
     }
-  }
-
-  public void Shoot()
-  {
-    var bulletScene = GD.Load<PackedScene>("res://Nodes/CannonBall/cannon_ball.tscn").Instantiate();
-    CannonBall bullet = (CannonBall)bulletScene;
-
-    bullet.Shoot(GlobalPosition, rayCast.GlobalRotation + Mathf.Pi);
-    GetTree().Root.AddChild(bullet);
-    Effects.Visible = true;
-
-    Effects.Play("shoot");
-    shootTimer.Start();
-  }
-
-  private void OnAnimationFinished()
-  {
-    Effects.Visible = false;
   }
 }

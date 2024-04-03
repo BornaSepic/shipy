@@ -71,27 +71,24 @@ sprite_frames = SubResource("SpriteFrames_3tha2")
 frame = 3
 
 [node name="Cannons_Left" type="Node2D" parent="."]
-position = Vector2(-13, -11)
-rotation = 3.14159
+position = Vector2(-14, -2)
 
 [node name="ShipCannon" parent="Cannons_Left" instance=ExtResource("6_8en0s")]
 position = Vector2(1, -14)
-rotation = 1.5708
+rotation = 3.14159
 
 [node name="ShipCannon2" parent="Cannons_Left" instance=ExtResource("6_8en0s")]
 position = Vector2(1, 5)
-rotation = 1.5708
+rotation = 3.14159
 
 [node name="Cannons_Right" type="Node2D" parent="."]
 position = Vector2(13, -2)
 
 [node name="ShipCannon" parent="Cannons_Right" instance=ExtResource("6_8en0s")]
 position = Vector2(1, -14)
-rotation = 1.5708
 
 [node name="ShipCannon2" parent="Cannons_Right" instance=ExtResource("6_8en0s")]
 position = Vector2(1, 5)
-rotation = 1.5708
 
 [node name="Sail" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)

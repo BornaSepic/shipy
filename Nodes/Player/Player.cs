@@ -74,9 +74,8 @@ public partial class Player : CharacterBody2D
     for (int i = 0; i < possibleCannons.Count; i++)
     {
       ShipCannon cannon = (ShipCannon)possibleCannons[i];
-      cannon.Shoot();
+      cannon.Shoot((uint) CollisionLayers.Enemy);
     }
-
   }
 
   private void ShootRightCannons()
@@ -87,17 +86,15 @@ public partial class Player : CharacterBody2D
     for (int i = 0; i < possibleCannons.Count; i++)
     {
       ShipCannon cannon = (ShipCannon)possibleCannons[i];
-      cannon.Shoot();
+      cannon.Shoot((uint) CollisionLayers.Enemy);
     }
-
   }
 
-  public void TakeDamage(float damage, Vector2 globalColliderPosition) {
+  public void TakeDamage(float damage) {
     health -= (decimal)damage;
     if (health <= 0)
     {
       Speed = 0;
-      GD.Print("Player died");
     }
 
     var fireScene = fireSprite01.Instantiate();
