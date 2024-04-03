@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://dewmuwej8d7fv"]
+
+[ext_resource type="Texture2D" uid="uid://cd451chyi1a31" path="res://Assets/effects/fire1.png" id="1_57ttm"]
+[ext_resource type="Texture2D" uid="uid://c27cav8oh7nmk" path="res://Assets/effects/g1287-2.png" id="2_yvqxg"]
+[ext_resource type="Texture2D" uid="uid://d4im7fqrj05yh" path="res://Assets/effects/use1287-7.png" id="3_3omi4"]
+[ext_resource type="Texture2D" uid="uid://ca2hje3ji04vu" path="res://Assets/effects/g1287-2-8.png" id="4_0vk4o"]
+[ext_resource type="Script" path="res://Effects/Fire01/fire_01.cs" id="5_ocjgv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sm8he"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_57ttm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_yvqxg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3omi4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_0vk4o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3omi4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_yvqxg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[node name="Fire_01" type="AnimatedSprite2D"]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_sm8he")
+script = ExtResource("5_ocjgv")

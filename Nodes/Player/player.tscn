@@ -1,0 +1,98 @@
+[gd_scene load_steps=14 format=3 uid="uid://jm83r4eky8bk"]
+
+[ext_resource type="Script" path="res://Nodes/Player/Player.cs" id="1_bxi8k"]
+[ext_resource type="Texture2D" uid="uid://qwqt3yr7xxiv" path="res://Assets/ship/hullSmall (1).png" id="1_nnnip"]
+[ext_resource type="Texture2D" uid="uid://burb5t8yukhmq" path="res://Assets/ship/hullSmall (2).png" id="2_qqlok"]
+[ext_resource type="Texture2D" uid="uid://day2ieulxi53a" path="res://Assets/ship/hullSmall (3).png" id="3_wakun"]
+[ext_resource type="Texture2D" uid="uid://4m0r7b3no7a3" path="res://Assets/ship/hullSmall (4).png" id="4_st7qh"]
+[ext_resource type="Texture2D" uid="uid://brrjitbm1dm8m" path="res://Assets/ship/sailLarge (9).png" id="5_4a2sw"]
+[ext_resource type="Texture2D" uid="uid://dfbp3t2xnv7dk" path="res://Assets/ship/sailLarge (3).png" id="6_5s5ef"]
+[ext_resource type="PackedScene" uid="uid://bthjilyaoqfhu" path="res://Nodes/ShipCannon/ship_cannon.tscn" id="6_8en0s"]
+[ext_resource type="Texture2D" uid="uid://cr8e4okgvpn77" path="res://Assets/ship/sailLarge (21).png" id="7_vu816"]
+[ext_resource type="Texture2D" uid="uid://48h1ow5aq632" path="res://Assets/ship/sailLarge (15).png" id="8_kxylp"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_al4dm"]
+radius = 9.11053
+height = 18.2211
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3tha2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_st7qh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_wakun")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_qqlok")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_nnnip")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b7c68"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_kxylp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_vu816")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_5s5ef")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_4a2sw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("CannonsLeft", "CannonsRight")]
+collision_mask = 4
+script = ExtResource("1_bxi8k")
+CannonsLeft = NodePath("Cannons_Left")
+CannonsRight = NodePath("Cannons_Right")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+scale = Vector2(3.16967, 6.47603)
+shape = SubResource("CapsuleShape2D_al4dm")
+
+[node name="Body" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3tha2")
+frame = 3
+
+[node name="Cannons_Left" type="Node2D" parent="."]
+position = Vector2(-13, -11)
+rotation = 3.14159
+
+[node name="ShipCannon" parent="Cannons_Left" instance=ExtResource("6_8en0s")]
+position = Vector2(1, -14)
+rotation = 1.5708
+
+[node name="ShipCannon2" parent="Cannons_Left" instance=ExtResource("6_8en0s")]
+position = Vector2(1, 5)
+rotation = 1.5708
+
+[node name="Cannons_Right" type="Node2D" parent="."]
+position = Vector2(13, -2)
+
+[node name="ShipCannon" parent="Cannons_Right" instance=ExtResource("6_8en0s")]
+position = Vector2(1, -14)
+rotation = 1.5708
+
+[node name="ShipCannon2" parent="Cannons_Right" instance=ExtResource("6_8en0s")]
+position = Vector2(1, 5)
+rotation = 1.5708
+
+[node name="Sail" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_b7c68")
